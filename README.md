@@ -1,5 +1,5 @@
 # Cobble
-Categorical Organization of your  Bubble by Brief LanguagE
+Categorical Organization of your  Bubble by Brief Language
 
 ## Phase 0: Define Requirements and Architecture [DONE]
 
