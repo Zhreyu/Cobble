@@ -83,53 +83,17 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Phase 0: Define Requirements and Architecture [DONE]
 
 **Goal**: Establish the high-level design decisions and technology stack.
-
-1. **High-Level Feature Breakdown**
-    
-    - **CLI-based file sorting** with two modes:
-        1. **Auto-sort** using LLM suggestions (based on file content and/or metadata).
-        2. **Manual (prompt-based) sorting** where the user can specify how to sort.
-    - **Confirm changes** before performing moves, with an option to override or refine suggestions.
-    - **Context-based sorting** by reading file content (e.g., for `.pdf` files, read up to ~500 words to glean context).
-    - **File triaging** by labeling or tagging files with potential categories (e.g., “LectureNotes,” “Assignment,” “Personal,” “Images,” “Music,” etc.).
-    - **Interactive chat** with the LLM to adjust categories mid-flow.
-    - **Basic logging** to see which files were moved and where.
-2. **Decide Tech Stack**
-    
-    - **Language(s)**:
-        - Python for the CLI, LLM integration, and content parsing.
-        - C# for later GUI if desired (or continue in Python if you want cross-platform GUI libraries).
-    - **LLM Integration**: Ollama (local usage of Llama variants).
-        - **Python wrapper** or HTTP-based (depending on how Ollama is set up).
-    - **Data Storage**:
-        - Use a lightweight local store or simply keep it ephemeral at first.
-        - Later, you might integrate a small local database (SQLite) if needed for metadata.
-3. **Architecture Overview**
-    
-    - **FileScanner**: Responsible for scanning a given folder and listing all files.
-    - **ContentExtractor**: Retrieves partial file content (e.g., up to 500 words for PDFs/doc/docx).
-    - **LLMClassifier**: Communicates with Ollama to get classification suggestions.
-    - **UserInteraction**: CLI logic for prompting the user about each step.
-    - **FileOrganizer**: Moves/renames files based on final decisions.
-
 ---
-
 ## Phase 1: Basic CLI Tool (Manual Sorting, No LLM) [DONE]
 
 **Goal**: Build a minimal CLI that can scan files in a folder and move them based on user prompts.
-
-
-
 ---
-
 ## Phase 2: Integrate LLM for Auto-Suggested Labels [DONE]
 
 **Goal**: Integrate Groq to get auto-suggested categories for files.
-
 ---
-
 ## Phase 3: Interactive Chat Refinements & Custom Prompts [DONE]
-
+---
 ## Phase 4: Polishing and Advanced Features [TODO]
 
 
