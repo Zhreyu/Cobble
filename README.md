@@ -30,7 +30,7 @@ AutoSort/
 1. Clone the repository:
 ```bash
 git clone https://github.com/zhreyu/cobble.git
-cd AutoSort
+cd cobble
 ```
 
 2. Create a virtual environment (optional but recommended):
