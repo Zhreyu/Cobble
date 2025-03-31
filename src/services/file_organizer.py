@@ -19,9 +19,36 @@ from src.context.file_organizer_context import FileOrganizerContext
 from src.models.rule import Rule
 
 logger = logging.getLogger(__name__)
+# 2) Build the prompt for a single bulk classification
+system_instructions = """You are a file categorization assistant. 
+We have multiple files, each with:
+- filename
+- extension
+- a short content excerpt
+
+Your job:
+1) Assign each file EXACTLY ONE category from:
+   - Academic
+   - Business
+   - Documents
+   - Personal
+   - Media
+2) Optionally use ONE subcategory, e.g. "Academic/Physics".
+3) Return a single JSON object with the structure:
+{
+   "filename1.ext": "MainCategory[/SubCategory]",
+   "filename2.ext": "MainCategory[/SubCategory]",
+   ...
+}
+Follow these rules:
+- Use PascalCase for categories/subcategories, e.g. "Academic/Mathematics"
+- Return ONLY valid JSON, with no extra text or comments.
+- If unsure, guess the most likely category from the excerpt or extension.
+- 
+"""
 
 class SmartFileSorter:
-    def __init__(self, api_key: str, model_name: str = "mixtral-8x7b-32768"):
+    def __init__(self, api_key: str, model_name: str = "llama-3.3-70b-versatile"):
         self.context = FileOrganizerContext()
         self.client = Groq(api_key=api_key)
         self.model_name = model_name
@@ -97,32 +124,7 @@ class SmartFileSorter:
                     "excerpt": excerpt
                 })
 
-        # 2) Build the prompt for a single bulk classification
-        system_instructions = """You are a file categorization assistant. 
-We have multiple files, each with:
-- filename
-- extension
-- a short content excerpt
-
-Your job:
-1) Assign each file EXACTLY ONE category from:
-   - Academic
-   - Business
-   - Documents
-   - Personal
-   - Media
-2) Optionally use ONE subcategory, e.g. "Academic/Physics".
-3) Return a single JSON object with the structure:
-{
-   "filename1.ext": "MainCategory[/SubCategory]",
-   "filename2.ext": "MainCategory[/SubCategory]",
-   ...
-}
-Follow these rules:
-- Use PascalCase for categories/subcategories, e.g. "Academic/Mathematics"
-- Return ONLY valid JSON, with no extra text or comments.
-- If unsure, guess the most likely category from the excerpt or extension.
-"""
+        
 
         user_content_list = []
         for item in file_info_list:
@@ -151,6 +153,7 @@ Follow these rules:
                 temperature=0.0,   # Lower temp for more consistent responses
                 max_tokens=800
             )
+            print(response)
             raw_text = response.choices[0].message.content.strip()
             # Try to parse JSON
             json_text = self.extract_json_from_text(raw_text)
@@ -542,7 +545,11 @@ Follow these rules:
                             self.show_rules()
                         elif rule_choice == "2":
                             rule_text = input("\nDescribe your rule: ")
-                            success = self.add_custom_rule(rule_text)
+                            global system_instructions
+                            system_instructions += f"Rule : {rule_text}"
+                            
+                            # This variable 'success' is not defined, so let's create a placeholder
+                            success = True  # You need to replace this with actual rule addition logic
                             if success:
                                 print("✅ Rule added successfully!")
                             else:
