@@ -1,5 +1,5 @@
-groq==0.4.2
-tqdm==4.66.2
+groq==0.20.0
+tqdm==4.67.1
 pymupdf==1.23.5       # Replaces PyPDF2 for PDF handling
 python-docx==0.8.11   # For Word document parsing
 openpyxl==3.1.2       # For Excel file parsing
