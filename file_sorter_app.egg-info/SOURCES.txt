@@ -1,0 +1,16 @@
+.env.example
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+file_sorter_app.egg-info/PKG-INFO
+file_sorter_app.egg-info/SOURCES.txt
+file_sorter_app.egg-info/dependency_links.txt
+file_sorter_app.egg-info/entry_points.txt
+file_sorter_app.egg-info/requires.txt
+file_sorter_app.egg-info/top_level.txt
+src/app.py
+src/backup_system.py
+src/file_categorizer.py
+src/groq_agent.py
+src/web_app.py

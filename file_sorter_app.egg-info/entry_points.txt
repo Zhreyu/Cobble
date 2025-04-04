@@ -1,0 +1,2 @@
+[console_scripts]
+file-sorter = main:main

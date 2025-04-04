@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COBBLE - Smart File Sorter</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">COBBLE_</div>
+            <div class="version">v1.0.0</div>
+        </header>
+
+        <div class="search-container">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="Search files...">
+                <button id="upload-btn" class="upload-btn">
+                    <i class="fas fa-folder-open"></i>
+                </button>
+                <input type="file" id="file-upload" multiple style="display: none;">
+            </div>
+        </div>
+
+        <div class="status-container">
+            <div class="status-header">// system status</div>
+            <div class="status-grid">
+                <div class="status-label">memory</div>
+                <div class="status-value" id="memory-status">0%</div>
+                <div class="status-label">cpu</div>
+                <div class="status-value" id="cpu-status">0%</div>
+                <div class="status-label">network</div>
+                <div class="status-value" id="network-status">inactive</div>
+            </div>
+            <div class="status-indicator" id="status-indicator"></div>
+        </div>
+
+        <div class="main-content">
+            <div class="action-buttons">
+                <button id="sort-btn" class="action-btn">Sort Files</button>
+                <button id="revert-btn" class="action-btn">Revert to Original</button>
+                <button id="rules-btn" class="action-btn">Custom Rules</button>
+            </div>
+
+            <div class="results-container">
+                <div class="results-header">// sorting results</div>
+                <div class="results-content" id="results-content">
+                    <div class="placeholder-text">Select files and click "Sort Files" to begin</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Custom Rules Modal -->
+        <div id="rules-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Custom Rules</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="rules-list" id="rules-list">
+                        <!-- Rules will be populated here -->
+                    </div>
+                    <div class="add-rule-form">
+                        <h3>Add New Rule</h3>
+                        <div class="form-group">
+                            <label for="rule-name">Rule Name:</label>
+                            <input type="text" id="rule-name" placeholder="e.g., Python Files">
+                        </div>
+                        <div class="form-group">
+                            <label for="rule-pattern">Pattern:</label>
+                            <input type="text" id="rule-pattern" placeholder="e.g., .py or *.jpg">
+                        </div>
+                        <div class="form-group">
+                            <label for="rule-folder">Target Folder:</label>
+                            <input type="text" id="rule-folder" placeholder="e.g., Code/Python">
+                        </div>
+                        <div class="form-group">
+                            <label for="rule-description">Description:</label>
+                            <input type="text" id="rule-description" placeholder="Optional description">
+                        </div>
+                        <button id="add-rule-btn" class="action-btn">Add Rule</button>
+                    </div>
+                    <div class="rule-suggestions">
+                        <h3>Get Suggestions</h3>
+                        <p>Analyze your files to get rule suggestions</p>
+                        <button id="get-suggestions-btn" class="action-btn">Get Suggestions</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Suggestions Modal -->
+        <div id="suggestions-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Rule Suggestions</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div id="suggestions-explanation" class="suggestions-explanation"></div>
+                    <div id="suggestions-list" class="suggestions-list">
+                        <!-- Suggestions will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="backup-info">
+                <span>Current Backup ID: </span>
+                <span id="backup-id">None</span>
+            </div>
+            <div class="footer-text">© COBBLE SYSTEM</div>
+        </footer>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

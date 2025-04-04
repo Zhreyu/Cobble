@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Main entry point for the File Sorter App.
+Main entry point for the Web UI version of the Smart File Sorter application.
 """
 
 import os
 import sys
-from src.app import main
+from src.web_app import run_web_app
 
 if __name__ == "__main__":
     # Ensure the Groq API key is set
@@ -28,5 +28,12 @@ if __name__ == "__main__":
             print("You can set it by creating a .env file with GROQ_API_KEY=your_key")
             print("or by passing it as the first command line argument.")
     
-    # Run the application
-    main()
+    # Run the web application
+    host = os.getenv("HOST", "0.0.0.0")
+    port = int(os.getenv("PORT", "5000"))
+    debug = os.getenv("DEBUG", "False").lower() in ("true", "1", "t")
+    
+    print(f"Starting Smart File Sorter Web UI on http://{host}:{port}")
+    print("Press Ctrl+C to stop the server")
+    
+    run_web_app(host=host, port=port, debug=debug)

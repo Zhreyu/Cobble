@@ -1,0 +1,23 @@
+Metadata-Version: 2.2
+Name: file_sorter_app
+Version: 1.0.0
+Summary: A multi-agent file sorting application using Groq API
+Author: Manus AI
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: Utilities
+Requires-Python: >=3.8
+License-File: LICENSE
+Requires-Dist: groq>=0.22.0
+Requires-Dist: python-dotenv>=1.1.0
+Requires-Dist: customtkinter>=5.2.0
+Dynamic: author
+Dynamic: classifier
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
