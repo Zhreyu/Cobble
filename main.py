@@ -5,7 +5,7 @@ import os
 import logging
 
 from src.context.file_organizer_context import FileOrganizerContext
-from src.services.file_organizer import SmartFileSorter  # <--- the new class
+from src.services.file_organizer import SmartFileSorter  
 
 logging.basicConfig(
     level=logging.INFO, 
